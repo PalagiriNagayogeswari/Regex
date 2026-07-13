@@ -19,6 +19,12 @@ public class Regex {
         return m.matches();
     }
 
+    //validateEmail method validates email based on the required conditions.
+    public boolean validateEmail(String email){
+        Pattern p=Pattern.compile("^[a-zA-Z0-9]+([+.-_][a-zA-Z0-9]+)?@[a-zA-Z0-9]+\\.[a-zA-Z0-9]{2,}\\.([a-zA-Z0-9]{2,})?");
+        Matcher m=p.matcher(email);
+        return m.matches();
+    }
 
     public static void main(String[] args){
         Regex rex=new Regex();
@@ -30,5 +36,9 @@ public class Regex {
         System.out.println("Enter the Last Name: ");
         //calling the validateLastName method for user input.
         System.out.println(rex.validateLastName(sc.next()));
+
+        System.out.println("Enter the Email: ");
+        //calling the validateLastName method for user input.
+        System.out.println(rex.validateEmail(sc.next()));
     }
 }
