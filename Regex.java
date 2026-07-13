@@ -11,11 +11,24 @@ public class Regex {
         return m.matches();
     }
 
+    //written the second use case of validating users last name
+    //Last name should start with Cap and should contain atleast 3 characters.
+    public boolean validateLastName(String lastname) {
+        Pattern p = Pattern.compile("[A-Z][a-z]{2,}");
+        Matcher m=p.matcher(lastname);
+        return m.matches();
+    }
+
+
     public static void main(String[] args){
         Regex rex=new Regex();
         Scanner sc=new Scanner(System.in);
         System.out.println("Enter the first Name: ");
         //calling the validateFirstName method for user input.
         System.out.println(rex.validateFirstName(sc.next()));
+
+        System.out.println("Enter the Last Name: ");
+        //calling the validateLastName method for user input.
+        System.out.println(rex.validateLastName(sc.next()));
     }
 }
