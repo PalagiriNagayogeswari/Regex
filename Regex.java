@@ -33,6 +33,28 @@ public class Regex {
         return m.matches();
     }
 
+    // UC5 - Password Rule1 (Minimum 8 characters)
+    public boolean validatePasswordRule1(String password) {
+        //matches is a static method of Pattern class which takes two arguments regex,string.
+        return Pattern.matches("^.{8,}$", password);
+    }
+
+    // UC6 - Password Rule2 (At least one uppercase)
+    public boolean validatePasswordRule2(String password) {
+        return Pattern.matches("^(?=.*[A-Z]).{8,}$", password);
+    }
+
+    // UC7 - Password Rule3 (At least one uppercase and one digit)
+    public boolean validatePasswordRule3(String password) {
+        return Pattern.matches("^(?=.*[A-Z])(?=.*[0-9]).{8,}$", password);
+    }
+
+    // UC8 - Password Rule4 (Exactly one special character)
+    public boolean validatePasswordRule4(String password) {
+        return Pattern.matches("^(?=.*[A-Z])(?=.*[0-9])(?=(?:.*[^a-zA-Z0-9]){1})(?!.*[^a-zA-Z0-9].*[^a-zA-Z0-9]).{8,}$", password);
+    }
+
+
     public static void main(String[] args){
         Regex rex=new Regex();
         Scanner sc=new Scanner(System.in);
@@ -52,5 +74,13 @@ public class Regex {
         System.out.println("Enter the Phone Number: ");
         //calling the validateNumber method for user input.
         System.out.println(rex.validateNumber(sc.nextLine()));
+
+        System.out.print("Enter Password: ");
+        String password = sc.nextLine();
+
+        System.out.println("Rule1 : " + rex.validatePasswordRule1(password));
+        System.out.println("Rule2 : " + rex.validatePasswordRule2(password));
+        System.out.println("Rule3 : " + rex.validatePasswordRule3(password));
+        System.out.println("Rule4 : " + rex.validatePasswordRule4(password));
     }
 }
